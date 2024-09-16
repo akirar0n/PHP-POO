@@ -5,7 +5,7 @@ class Carro{
 
     public function __construct($vm){
         
-        $this->setLigado(false);
+        $this->setLigado('Carro desligado');
         $this->setVatual(0);
         $this->setVmax($vm);
 
@@ -46,8 +46,10 @@ class Carro{
 
     //MÉTODOS ESPECÍFICOS
     public function acelerar($vel){
-        if($this->getLigado()==true):
+        if($this->getLigado()=='Carro ligado!'):
             if($this->getVatual() + $vel < $this->getVmax()):
+                $this->setVatual($this->getVatual() + $vel);
+                $this->setMsg('Acelerando...');
         else:
             $this->setVatual($this->getVmax());
             $this->setMsg('Velocidade máxima atingida!');
@@ -61,7 +63,18 @@ class Carro{
     }
 
     public function ligar(){
-        $this->setLigado(true);
+        $this->setLigado('Carro ligado!');
+    }
+
+    public function desligar(){
+        $this->setLigado('Carro desligado!');
+    }
+
+    public function detalhes(){
+        echo "Status: {$this->getLigado()} <br>";
+        echo "Vel. Max: {$this->getVmax()} <br>";
+        echo "Vel. Atual: {$this->getVatual()} <br>";
+        echo "Msg: {$this->getMsg()} <br> <br>";
     }
 }
 
